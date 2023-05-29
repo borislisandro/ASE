@@ -1,61 +1,93 @@
 #include <string.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+#include "freertos/timers.h"    
 #include "esp_mac.h"
 #include "esp_wifi.h"
 #include "esp_event.h"
 #include "esp_log.h"
 #include "nvs_flash.h"
-
 #include "lwip/err.h"
 #include "lwip/sys.h"
-
 #include <sys/param.h>
 #include "nvs_flash.h"
 #include "esp_netif.h"
 #include <esp_http_server.h>
-
-#include "driver/gpio.h"
-
 #include <stdio.h>
-#include <string.h>
+#include <stdlib.h>
+#include <inttypes.h>
+#include <math.h>
+#include "RCWL_9610.h"
+#include "driver/i2c.h"
+
+#define EXAMPLE_ESP_WIFI_SSID      "esp_wifi"
+#define EXAMPLE_ESP_WIFI_PASS      "password"
+#define EXAMPLE_ESP_WIFI_CHANNEL   7
+#define EXAMPLE_MAX_STA_CONN       10
+
+#define RCWL_9610_ADDR 0x57// 0100 1101
+
+#define PIN_I2C_SDA  16
+#define PIN_I2C_SCL  17
+#define CLK_SPEED 10000  
+
+#define SAMPLE_PERIOD_MS 100
+#define timeout 1000
+
+static const uint8_t i2cPort = 0;
+static uint8_t sample[3];
+
+static TimerHandle_t getdistanceTimer;
+
 
 static char upperhalf[] = "<!DOCTYPE html>\
 <html>\
 <head>\
 <style>\
 .button {\
-  background-color: #919191;\
-  border: none;\
-  color: white;\
-  padding: 15px 32px;\
-  text-align: center;\
-  text-decoration: none;\
-  display: inline-block;\
-  font-size: 16px;\
-  margin: 4px 2px;\
-  cursor: pointer;\
+  display: none; /* Hide the button */\
+}\
+</style>\
+<script>\
+function updateSensorValue() {\
+  var xhttp = new XMLHttpRequest();\
+  xhttp.onreadystatechange = function() {\
+    if (this.readyState == 4 && this.status == 200) {\
+      console.log('Sensor value updated successfully');\
+      location.reload();\
+    }\
+  };\
+  xhttp.open(\'GET\', \'http://192.168.4.1/distance\', true);\
+  xhttp.send();\
 }\
 \
-</style>\
+updateSensorValue();\
+setInterval(updateSensorValue, 10000);\
+</script>\
 </head>\
 <body>\
-\
 <h2>ESP-32 HC-SR04</h2>\
-\
-<h3>Distance measured in the sensor is ";
+<h3>Distance measured by the sensor is ";
 
-static char lowerhalf[]= " cm</h3>\
-\
-\
-<button class=\"button button1\" onclick =\"window.location.href='/distance'\" >Update sensor value</button>\
-\
+static char lowerhalf[]= " centimeters</h3>\
+<button class=\"button button1\"></button>\
 </body>\
 </html>";
 
 static char temp[1000];
 
-static char distance_str[4] = "NANN";
+static char distance_str[10] = "NANN";
+
+void getdistance() {
+    RCWL_9610_start_and_read_distance(i2cPort, RCWL_9610_ADDR, timeout, sample);
+    float distance = (sample[2] + sample[1]*256 + sample[0]*65536)/1000;
+    if( (distance >= 1)&&(distance <= 900)) {
+        snprintf(distance_str, sizeof(distance_str), "%.2f", distance);
+        printf("Distance: %s mm\n",distance_str);
+    }
+    vTaskDelay(20);
+}
+
 /********************************* WEB SERVER CODE BEGINS ***********************************/
 static const char *TAG = "web server";
 
@@ -63,7 +95,6 @@ static const char *TAG = "web server";
 static esp_err_t distance_get_handler(httpd_req_t *req)
 {
     esp_err_t error;
-    ESP_LOGI(TAG,"distance read");
     strcpy(temp, upperhalf);
     strcat(temp,distance_str);
     strcat(temp,lowerhalf);
@@ -72,7 +103,6 @@ static esp_err_t distance_get_handler(httpd_req_t *req)
     if( error != ESP_OK ) {
         ESP_LOGI(TAG, "Error %d while sending response",error);
     }
-    else ESP_LOGI(TAG, "Response sent Sucessfully");
 
     return error;
 }
@@ -143,15 +173,8 @@ static void connect_handler(void* arg, esp_event_base_t event_base,
     }
 }
 
-/* The examples use WiFi configuration that you can set via project configuration menu.
 
-   If you'd rather not, just change the below entries to strings with
-   the config you want - ie #define EXAMPLE_WIFI_SSID "mywifissid"
-*/
-#define EXAMPLE_ESP_WIFI_SSID      "esp_wifi"
-#define EXAMPLE_ESP_WIFI_PASS      "password"
-#define EXAMPLE_ESP_WIFI_CHANNEL   7
-#define EXAMPLE_MAX_STA_CONN       10
+//////////////////////////// WIFI CODE BEGINS ///////////////////////////////////
 
 static void wifi_event_handler(void* arg, esp_event_base_t event_base,
                                     int32_t event_id, void* event_data)
@@ -208,68 +231,31 @@ void wifi_init_softap(void)
 }
 
 
-#define output_pin 5
-#define input_pin 17
-#define calibration_constant 10.584615
-
-
-void GPIO_SETUP(void) {
-    esp_rom_gpio_pad_select_gpio(output_pin);
-    gpio_set_direction(output_pin,GPIO_MODE_OUTPUT);
-    gpio_pulldown_en(output_pin);
-    gpio_pullup_dis(output_pin);
-    esp_rom_gpio_pad_select_gpio(input_pin);
-    gpio_set_direction(input_pin,GPIO_MODE_INPUT);
-    gpio_pulldown_en(input_pin);
-    gpio_pullup_dis(input_pin);
-}
-
-
 void app_main(void)
 {
 
     static httpd_handle_t server = NULL;
-
-    //Initialize NVS
     esp_err_t ret = nvs_flash_init();
     if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
       ESP_ERROR_CHECK(nvs_flash_erase());
       ret = nvs_flash_init();
     }
-    ESP_ERROR_CHECK(ret);
 
+    ESP_ERROR_CHECK(ret);
     ESP_LOGI(TAG, "ESP_WIFI_MODE_AP");
+
     wifi_init_softap();
 
     ESP_ERROR_CHECK(esp_netif_init());
-
     ESP_ERROR_CHECK(esp_event_handler_register(IP_EVENT, IP_EVENT_AP_STAIPASSIGNED, &connect_handler, &server));
-    //ESP_ERROR_CHECK(esp_event_handler_register(WIFI_EVENT, WIFI_EVENT_STA_DISCONNECTED, &disconnect_handler, &server));
+    
+    RCWL_9610_init(i2cPort, PIN_I2C_SDA, PIN_I2C_SCL, CLK_SPEED);
 
-    GPIO_SETUP();
+    float freq = 1;
+    float period;
+    period = 1 / freq;
+    period = period * 1000;
 
-    int duration;
-    int distance;
-
-    while (1) {
-        duration = 0;
-
-        gpio_set_level(output_pin,0);
-        vTaskDelay(1);
-        gpio_set_level(output_pin,1);
-        vTaskDelay(10);
-        gpio_set_level(output_pin,0);
-
-        while(gpio_get_level(input_pin) == 0);
-        duration += 1;
-        while(gpio_get_level(input_pin) == 1){
-            duration += 1;
-        }        
-
-        distance = (int)((duration*0.001)*calibration_constant/2);
-        sprintf(distance_str, "%d", distance);
-        printf("Distance =%d\n",distance);
-
-        vTaskDelay(10);
-    }
+    getdistanceTimer = xTimerCreate("distanceTimer", pdMS_TO_TICKS(SAMPLE_PERIOD_MS), pdTRUE, 0, getdistance);
+    xTimerStart(getdistanceTimer, 0);
 }
