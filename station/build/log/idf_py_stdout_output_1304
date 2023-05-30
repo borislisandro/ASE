@@ -1,0 +1,44 @@
+[1/9] Performing build step for 'bootloader'
+[1/1] cmd.exe /C "cd /D C:\Espressif\frameworks\esp-idf-v5.0\projects\station\build\bootloader\esp-idf\esptool_py && C:\Espressif\python_env\idf5.0_py3.8_env\Scripts\python.exe C:/Espressif/frameworks/esp-idf-v5.0/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 C:/Espressif/frameworks/esp-idf-v5.0/projects/station/build/bootloader/bootloader.bin"
+Bootloader binary size 0x6720 bytes. 0x8e0 bytes (8%) free.
+[2/7] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/station_example_main.c.obj
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c: In function 'RCWL_9610_start':
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:92:57: warning: passing argument 3 of 'i2c_master_write_to_device' from incompatible pointer type [-Wincompatible-pointer-types]
+   92 |     ret = i2c_master_write_to_device(i2cPort, sensAddr, &data, sizeof(data), timeOut);
+      |                                                         ^~~~~
+      |                                                         |
+      |                                                         uint8_t (*)[1] {aka unsigned char (*)[1]}
+In file included from C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:41:
+C:/Espressif/frameworks/esp-idf-v5.0/components/driver/include/driver/i2c.h:198:53: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'uint8_t (*)[1]' {aka 'unsigned char (*)[1]'}
+  198 |                                      const uint8_t* write_buffer, size_t write_size,
+      |                                      ~~~~~~~~~~~~~~~^~~~~~~~~~~~
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c: In function 'RCWL_9610_start_and_read_distance':
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:115:59: warning: passing argument 3 of 'i2c_master_write_read_device' from incompatible pointer type [-Wincompatible-pointer-types]
+  115 |     ret = i2c_master_write_read_device(i2cPort, sensAddr, &write_buffer, sizeof(write_buffer),&read_buffer, sizeof(read_buffer), timeOut);
+      |                                                           ^~~~~~~~~~~~~
+      |                                                           |
+      |                                                           uint8_t (*)[1] {aka unsigned char (*)[1]}
+In file included from C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:41:
+C:/Espressif/frameworks/esp-idf-v5.0/components/driver/include/driver/i2c.h:246:55: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'uint8_t (*)[1]' {aka 'unsigned char (*)[1]'}
+  246 |                                        const uint8_t* write_buffer, size_t write_size,
+      |                                        ~~~~~~~~~~~~~~~^~~~~~~~~~~~
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:115:95: warning: passing argument 5 of 'i2c_master_write_read_device' from incompatible pointer type [-Wincompatible-pointer-types]
+  115 |     ret = i2c_master_write_read_device(i2cPort, sensAddr, &write_buffer, sizeof(write_buffer),&read_buffer, sizeof(read_buffer), timeOut);
+      |                                                                                               ^~~~~~~~~~~~
+      |                                                                                               |
+      |                                                                                               uint8_t (*)[3] {aka unsigned char (*)[3]}
+In file included from C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:41:
+C:/Espressif/frameworks/esp-idf-v5.0/components/driver/include/driver/i2c.h:247:49: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t (*)[3]' {aka 'unsigned char (*)[3]'}
+  247 |                                        uint8_t* read_buffer, size_t read_size,
+      |                                        ~~~~~~~~~^~~~~~~~~~~
+[3/7] Linking C static library esp-idf\main\libmain.a
+[4/7] Generating ld/sections.ld
+[5/7] Linking CXX executable wifi_station.elf
+[6/7] Generating binary image from built executable
+esptool.py v4.4
+Creating esp32 image...
+Merged 25 ELF sections
+Successfully created esp32 image.
+Generated C:/Espressif/frameworks/esp-idf-v5.0/projects/station/build/wifi_station.bin
+[7/7] cmd.exe /C "cd /D C:\Espressif\frameworks\esp-idf-v5.0\projects\station\build\esp-idf\esptool_py && C:\Espressif\python_env\idf5.0_py3.8_env\Scripts\python.exe C:/Espressif/frameworks/esp-idf-v5.0/components/partition_table/check_sizes.py --offset 0x8000 partition --type app C:/Espressif/frameworks/esp-idf-v5.0/projects/station/build/partition_table/partition-table.bin C:/Espressif/frameworks/esp-idf-v5.0/projects/station/build/wifi_station.bin"
+wifi_station.bin binary size 0xb4d40 bytes. Smallest app partition is 0x100000 bytes. 0x4b2c0 bytes (29%) free.

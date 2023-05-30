@@ -1,0 +1,201 @@
+[1/9] Performing build step for 'bootloader'
+[1/1] cmd.exe /C "cd /D C:\Espressif\frameworks\esp-idf-v5.0\projects\station\build\bootloader\esp-idf\esptool_py && C:\Espressif\python_env\idf5.0_py3.8_env\Scripts\python.exe C:/Espressif/frameworks/esp-idf-v5.0/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 C:/Espressif/frameworks/esp-idf-v5.0/projects/station/build/bootloader/bootloader.bin"
+Bootloader binary size 0x6720 bytes. 0x8e0 bytes (8%) free.
+[2/7] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/station_example_main.c.obj
+FAILED: esp-idf/main/CMakeFiles/__idf_main.dir/station_example_main.c.obj 
+ccache C:\Espressif\tools\xtensa-esp32-elf\esp-2022r1-11.2.0\xtensa-esp32-elf\bin\xtensa-esp32-elf-gcc.exe -DMBEDTLS_CONFIG_FILE=\"mbedtls/esp_config.h\" -DUNITY_INCLUDE_CONFIG_H -IC:/Espressif/frameworks/esp-idf-v5.0/projects/station/build/config -IC:/Espressif/frameworks/esp-idf-v5.0/projects/station/main -IC:/Espressif/frameworks/esp-idf-v5.0/components/newlib/platform_include -IC:/Espressif/frameworks/esp-idf-v5.0/components/freertos/FreeRTOS-Kernel/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/freertos/esp_additions/include/freertos -IC:/Espressif/frameworks/esp-idf-v5.0/components/freertos/FreeRTOS-Kernel/portable/xtensa/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/freertos/esp_additions/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/esp_hw_support/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/esp_hw_support/include/soc -IC:/Espressif/frameworks/esp-idf-v5.0/components/esp_hw_support/include/soc/esp32 -IC:/Espressif/frameworks/esp-idf-v5.0/components/esp_hw_support/port/esp32/. -IC:/Espressif/frameworks/esp-idf-v5.0/components/esp_hw_support/port/esp32/private_include -IC:/Espressif/frameworks/esp-idf-v5.0/components/heap/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/log/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/soc/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/soc/esp32/. -IC:/Espressif/frameworks/esp-idf-v5.0/components/soc/esp32/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/hal/esp32/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/hal/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/hal/platform_port/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/esp_rom/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/esp_rom/include/esp32 -IC:/Espressif/frameworks/esp-idf-v5.0/components/esp_rom/esp32 -IC:/Espressif/frameworks/esp-idf-v5.0/components/esp_common/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/esp_system/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/esp_system/port/soc -IC:/Espressif/frameworks/esp-idf-v5.0/components/esp_system/port/include/private -IC:/Espressif/frameworks/esp-idf-v5.0/components/xtensa/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/xtensa/esp32/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/lwip/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/lwip/include/apps -IC:/Espressif/frameworks/esp-idf-v5.0/components/lwip/include/apps/sntp -IC:/Espressif/frameworks/esp-idf-v5.0/components/lwip/lwip/src/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/lwip/port/esp32/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/lwip/port/esp32/include/arch -IC:/Espressif/frameworks/esp-idf-v5.0/components/esp_ringbuf/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/efuse/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/efuse/esp32/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/driver/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/driver/deprecated -IC:/Espressif/frameworks/esp-idf-v5.0/components/driver/esp32/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/esp_pm/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/mbedtls/port/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/mbedtls/mbedtls/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/mbedtls/mbedtls/library -IC:/Espressif/frameworks/esp-idf-v5.0/components/mbedtls/esp_crt_bundle/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/esp_app_format/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/bootloader_support/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/bootloader_support/bootloader_flash/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/esp_partition/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/app_update/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/spi_flash/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/pthread/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/esp_timer/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/app_trace/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/esp_event/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/nvs_flash/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/esp_phy/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/esp_phy/esp32/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/vfs/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/esp_netif/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/wpa_supplicant/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/wpa_supplicant/port/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/wpa_supplicant/esp_supplicant/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/esp_wifi/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/unity/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/unity/unity/src -IC:/Espressif/frameworks/esp-idf-v5.0/components/cmock/CMock/src -IC:/Espressif/frameworks/esp-idf-v5.0/components/console -IC:/Espressif/frameworks/esp-idf-v5.0/components/http_parser -IC:/Espressif/frameworks/esp-idf-v5.0/components/esp-tls -IC:/Espressif/frameworks/esp-idf-v5.0/components/esp-tls/esp-tls-crypto -IC:/Espressif/frameworks/esp-idf-v5.0/components/esp_adc/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/esp_adc/interface -IC:/Espressif/frameworks/esp-idf-v5.0/components/esp_adc/esp32/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/esp_adc/deprecated/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/esp_eth/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/esp_gdbstub/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/esp_gdbstub/xtensa -IC:/Espressif/frameworks/esp-idf-v5.0/components/esp_gdbstub/esp32 -IC:/Espressif/frameworks/esp-idf-v5.0/components/esp_hid/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/tcp_transport/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/esp_http_client/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/esp_http_server/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/esp_https_ota/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/esp_lcd/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/esp_lcd/interface -IC:/Espressif/frameworks/esp-idf-v5.0/components/protobuf-c/protobuf-c -IC:/Espressif/frameworks/esp-idf-v5.0/components/protocomm/include/common -IC:/Espressif/frameworks/esp-idf-v5.0/components/protocomm/include/security -IC:/Espressif/frameworks/esp-idf-v5.0/components/protocomm/include/transports -IC:/Espressif/frameworks/esp-idf-v5.0/components/esp_local_ctrl/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/esp_psram/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/espcoredump/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/espcoredump/include/port/xtensa -IC:/Espressif/frameworks/esp-idf-v5.0/components/wear_levelling/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/sdmmc/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/fatfs/diskio -IC:/Espressif/frameworks/esp-idf-v5.0/components/fatfs/vfs -IC:/Espressif/frameworks/esp-idf-v5.0/components/fatfs/src -IC:/Espressif/frameworks/esp-idf-v5.0/components/idf_test/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/idf_test/include/esp32 -IC:/Espressif/frameworks/esp-idf-v5.0/components/ieee802154/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/json/cJSON -IC:/Espressif/frameworks/esp-idf-v5.0/components/mqtt/esp-mqtt/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/perfmon/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/spiffs/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/ulp/ulp_common/include -IC:/Espressif/frameworks/esp-idf-v5.0/components/ulp/ulp_common/include/esp32 -IC:/Espressif/frameworks/esp-idf-v5.0/components/wifi_provisioning/include -mlongcalls -Wno-frame-address  -fdiagnostics-color=always -ffunction-sections -fdata-sections -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-enum-conversion -gdwarf-4 -ggdb -Og -fmacro-prefix-map=C:/Espressif/frameworks/esp-idf-v5.0/projects/station=. -fmacro-prefix-map=C:/Espressif/frameworks/esp-idf-v5.0=/IDF -fstrict-volatile-bitfields -Wno-error=unused-but-set-variable -fno-jump-tables -fno-tree-switch-conversion -DconfigENABLE_FREERTOS_DEBUG_OCDAWARE=1 -std=gnu17 -Wno-old-style-declaration -D_GNU_SOURCE -DIDF_VER=\"v5.0-1-g58e3366e40-dirty\" -DESP_PLATFORM -D_POSIX_READER_WRITER_LOCKS -MD -MT esp-idf/main/CMakeFiles/__idf_main.dir/station_example_main.c.obj -MF esp-idf\main\CMakeFiles\__idf_main.dir\station_example_main.c.obj.d -o esp-idf/main/CMakeFiles/__idf_main.dir/station_example_main.c.obj -c C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:151:20: error: redefinition of 'TAG'
+  151 | static const char *TAG = "web server";
+      |                    ^~~
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:58:20: note: previous definition of 'TAG' with type 'const char *'
+   58 | static const char *TAG = "wifi station";
+      |                    ^~~
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:154:39: error: unknown type name 'httpd_req_t'
+  154 | static esp_err_t distance_get_handler(httpd_req_t *req)
+      |                                       ^~~~~~~~~~~
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:167:14: error: unknown type name 'httpd_uri_t'
+  167 | static const httpd_uri_t distance = {
+      |              ^~~~~~~~~~~
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:168:5: error: field name not in record or union initializer
+  168 |     .uri       = "/distance",
+      |     ^
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:168:5: note: (near initialization for 'distance')
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:168:18: warning: initialization of 'int' from 'char *' makes integer from pointer without a cast [-Wint-conversion]
+  168 |     .uri       = "/distance",
+      |                  ^~~~~~~~~~~
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:168:18: note: (near initialization for 'distance')
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:169:5: error: field name not in record or union initializer
+  169 |     .method    = HTTP_GET,
+      |     ^
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:169:5: note: (near initialization for 'distance')
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:169:18: error: 'HTTP_GET' undeclared here (not in a function)
+  169 |     .method    = HTTP_GET,
+      |                  ^~~~~~~~
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:169:18: warning: excess elements in scalar initializer
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:169:18: note: (near initialization for 'distance')
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:170:5: error: field name not in record or union initializer
+  170 |     .handler   = distance_get_handler,
+      |     ^
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:170:5: note: (near initialization for 'distance')
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:170:18: error: 'distance_get_handler' undeclared here (not in a function)
+  170 |     .handler   = distance_get_handler,
+      |                  ^~~~~~~~~~~~~~~~~~~~
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:170:18: warning: excess elements in scalar initializer
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:170:18: note: (near initialization for 'distance')
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:173:5: error: field name not in record or union initializer
+  173 |     .user_ctx  = "ola"
+      |     ^
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:173:5: note: (near initialization for 'distance')
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:173:18: warning: excess elements in scalar initializer
+  173 |     .user_ctx  = "ola"
+      |                  ^~~~~
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:173:18: note: (near initialization for 'distance')
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:176:34: error: unknown type name 'httpd_req_t'
+  176 | esp_err_t http_404_error_handler(httpd_req_t *req, httpd_err_code_t err)
+      |                                  ^~~~~~~~~~~
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:176:52: error: unknown type name 'httpd_err_code_t'
+  176 | esp_err_t http_404_error_handler(httpd_req_t *req, httpd_err_code_t err)
+      |                                                    ^~~~~~~~~~~~~~~~
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:183:8: error: unknown type name 'httpd_handle_t'
+  183 | static httpd_handle_t start_webserver(void)
+      |        ^~~~~~~~~~~~~~
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c: In function 'start_webserver':
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:185:5: error: unknown type name 'httpd_handle_t'; did you mean 'intr_handle_t'?
+  185 |     httpd_handle_t server = NULL;
+      |     ^~~~~~~~~~~~~~
+      |     intr_handle_t
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:185:29: warning: initialization of 'int' from 'void *' makes integer from pointer without a cast [-Wint-conversion]
+  185 |     httpd_handle_t server = NULL;
+      |                             ^~~~
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:186:5: error: unknown type name 'httpd_config_t'
+  186 |     httpd_config_t config = HTTPD_DEFAULT_CONFIG();
+      |     ^~~~~~~~~~~~~~
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:186:29: error: implicit declaration of function 'HTTPD_DEFAULT_CONFIG' [-Werror=implicit-function-declaration]
+  186 |     httpd_config_t config = HTTPD_DEFAULT_CONFIG();
+      |                             ^~~~~~~~~~~~~~~~~~~~
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:187:11: error: request for member 'lru_purge_enable' in something not a structure or union
+  187 |     config.lru_purge_enable = true;
+      |           ^
+In file included from C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:16:
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:190:58: error: request for member 'server_port' in something not a structure or union
+  190 |     ESP_LOGI(TAG, "Starting server on port: '%d'", config.server_port);
+      |                                                          ^
+C:/Espressif/frameworks/esp-idf-v5.0/components/log/include/esp_log.h:410:137: note: in definition of macro 'ESP_LOG_LEVEL'
+  410 |         if (level==ESP_LOG_ERROR )          { esp_log_write(ESP_LOG_ERROR,      tag, LOG_FORMAT(E, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                         ^~~~~~~~~~~
+C:/Espressif/frameworks/esp-idf-v5.0/components/log/include/esp_log.h:342:38: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  342 | #define ESP_LOGI( tag, format, ... ) ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO,    tag, format, ##__VA_ARGS__)
+      |                                      ^~~~~~~~~~~~~~~~~~~
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:190:5: note: in expansion of macro 'ESP_LOGI'
+  190 |     ESP_LOGI(TAG, "Starting server on port: '%d'", config.server_port);
+      |     ^~~~~~~~
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:190:58: error: request for member 'server_port' in something not a structure or union
+  190 |     ESP_LOGI(TAG, "Starting server on port: '%d'", config.server_port);
+      |                                                          ^
+C:/Espressif/frameworks/esp-idf-v5.0/components/log/include/esp_log.h:411:137: note: in definition of macro 'ESP_LOG_LEVEL'
+  411 |         else if (level==ESP_LOG_WARN )      { esp_log_write(ESP_LOG_WARN,       tag, LOG_FORMAT(W, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                         ^~~~~~~~~~~
+C:/Espressif/frameworks/esp-idf-v5.0/components/log/include/esp_log.h:342:38: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  342 | #define ESP_LOGI( tag, format, ... ) ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO,    tag, format, ##__VA_ARGS__)
+      |                                      ^~~~~~~~~~~~~~~~~~~
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:190:5: note: in expansion of macro 'ESP_LOGI'
+  190 |     ESP_LOGI(TAG, "Starting server on port: '%d'", config.server_port);
+      |     ^~~~~~~~
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:190:58: error: request for member 'server_port' in something not a structure or union
+  190 |     ESP_LOGI(TAG, "Starting server on port: '%d'", config.server_port);
+      |                                                          ^
+C:/Espressif/frameworks/esp-idf-v5.0/components/log/include/esp_log.h:412:137: note: in definition of macro 'ESP_LOG_LEVEL'
+  412 |         else if (level==ESP_LOG_DEBUG )     { esp_log_write(ESP_LOG_DEBUG,      tag, LOG_FORMAT(D, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                         ^~~~~~~~~~~
+C:/Espressif/frameworks/esp-idf-v5.0/components/log/include/esp_log.h:342:38: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  342 | #define ESP_LOGI( tag, format, ... ) ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO,    tag, format, ##__VA_ARGS__)
+      |                                      ^~~~~~~~~~~~~~~~~~~
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:190:5: note: in expansion of macro 'ESP_LOGI'
+  190 |     ESP_LOGI(TAG, "Starting server on port: '%d'", config.server_port);
+      |     ^~~~~~~~
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:190:58: error: request for member 'server_port' in something not a structure or union
+  190 |     ESP_LOGI(TAG, "Starting server on port: '%d'", config.server_port);
+      |                                                          ^
+C:/Espressif/frameworks/esp-idf-v5.0/components/log/include/esp_log.h:413:137: note: in definition of macro 'ESP_LOG_LEVEL'
+  413 |         else if (level==ESP_LOG_VERBOSE )   { esp_log_write(ESP_LOG_VERBOSE,    tag, LOG_FORMAT(V, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                         ^~~~~~~~~~~
+C:/Espressif/frameworks/esp-idf-v5.0/components/log/include/esp_log.h:342:38: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  342 | #define ESP_LOGI( tag, format, ... ) ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO,    tag, format, ##__VA_ARGS__)
+      |                                      ^~~~~~~~~~~~~~~~~~~
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:190:5: note: in expansion of macro 'ESP_LOGI'
+  190 |     ESP_LOGI(TAG, "Starting server on port: '%d'", config.server_port);
+      |     ^~~~~~~~
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:190:58: error: request for member 'server_port' in something not a structure or union
+  190 |     ESP_LOGI(TAG, "Starting server on port: '%d'", config.server_port);
+      |                                                          ^
+C:/Espressif/frameworks/esp-idf-v5.0/components/log/include/esp_log.h:414:137: note: in definition of macro 'ESP_LOG_LEVEL'
+  414 |         else                                { esp_log_write(ESP_LOG_INFO,       tag, LOG_FORMAT(I, format), esp_log_timestamp(), tag, ##__VA_ARGS__); } \
+      |                                                                                                                                         ^~~~~~~~~~~
+C:/Espressif/frameworks/esp-idf-v5.0/components/log/include/esp_log.h:342:38: note: in expansion of macro 'ESP_LOG_LEVEL_LOCAL'
+  342 | #define ESP_LOGI( tag, format, ... ) ESP_LOG_LEVEL_LOCAL(ESP_LOG_INFO,    tag, format, ##__VA_ARGS__)
+      |                                      ^~~~~~~~~~~~~~~~~~~
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:190:5: note: in expansion of macro 'ESP_LOGI'
+  190 |     ESP_LOGI(TAG, "Starting server on port: '%d'", config.server_port);
+      |     ^~~~~~~~
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:191:9: error: implicit declaration of function 'httpd_start' [-Werror=implicit-function-declaration]
+  191 |     if (httpd_start(&server, &config) == ESP_OK) {
+      |         ^~~~~~~~~~~
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:194:9: error: implicit declaration of function 'httpd_register_uri_handler' [-Werror=implicit-function-declaration]
+  194 |         httpd_register_uri_handler(server, &distance);
+      |         ^~~~~~~~~~~~~~~~~~~~~~~~~~
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:200:12: warning: returning 'void *' from a function with return type 'int' makes integer from pointer without a cast [-Wint-conversion]
+  200 |     return NULL;
+      |            ^~~~
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c: At top level:
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:203:33: error: unknown type name 'httpd_handle_t'; did you mean 'intr_handle_t'?
+  203 | static esp_err_t stop_webserver(httpd_handle_t server)
+      |                                 ^~~~~~~~~~~~~~
+      |                                 intr_handle_t
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c: In function 'disconnect_handler':
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:212:5: error: unknown type name 'httpd_handle_t'; did you mean 'intr_handle_t'?
+  212 |     httpd_handle_t* server = (httpd_handle_t*) arg;
+      |     ^~~~~~~~~~~~~~
+      |     intr_handle_t
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:212:31: error: 'httpd_handle_t' undeclared (first use in this function); did you mean 'intr_handle_t'?
+  212 |     httpd_handle_t* server = (httpd_handle_t*) arg;
+      |                               ^~~~~~~~~~~~~~
+      |                               intr_handle_t
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:212:31: note: each undeclared identifier is reported only once for each function it appears in
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:212:46: error: expected expression before ')' token
+  212 |     httpd_handle_t* server = (httpd_handle_t*) arg;
+      |                                              ^
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:215:13: error: implicit declaration of function 'stop_webserver'; did you mean 'start_webserver'? [-Werror=implicit-function-declaration]
+  215 |         if (stop_webserver(*server) == ESP_OK) {
+      |             ^~~~~~~~~~~~~~
+      |             start_webserver
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:216:21: warning: assignment to 'int' from 'void *' makes integer from pointer without a cast [-Wint-conversion]
+  216 |             *server = NULL;
+      |                     ^
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c: In function 'connect_handler':
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:226:5: error: unknown type name 'httpd_handle_t'; did you mean 'intr_handle_t'?
+  226 |     httpd_handle_t* server = (httpd_handle_t*) arg;
+      |     ^~~~~~~~~~~~~~
+      |     intr_handle_t
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:226:31: error: 'httpd_handle_t' undeclared (first use in this function); did you mean 'intr_handle_t'?
+  226 |     httpd_handle_t* server = (httpd_handle_t*) arg;
+      |                               ^~~~~~~~~~~~~~
+      |                               intr_handle_t
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:226:46: error: expected expression before ')' token
+  226 |     httpd_handle_t* server = (httpd_handle_t*) arg;
+      |                                              ^
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:227:17: warning: comparison between pointer and integer
+  227 |     if (*server == NULL) {
+      |                 ^~
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c: In function 'app_main':
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:246:12: error: unknown type name 'httpd_handle_t'
+  246 |     static httpd_handle_t server = NULL;
+      |            ^~~~~~~~~~~~~~
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:246:36: warning: initialization of 'int' from 'void *' makes integer from pointer without a cast [-Wint-conversion]
+  246 |     static httpd_handle_t server = NULL;
+      |                                    ^~~~
+At top level:
+C:/Espressif/frameworks/esp-idf-v5.0/projects/station/main/station_example_main.c:209:13: warning: 'disconnect_handler' defined but not used [-Wunused-function]
+  209 | static void disconnect_handler(void* arg, esp_event_base_t event_base,
+      |             ^~~~~~~~~~~~~~~~~~
+cc1.exe: some warnings being treated as errors
+ninja: build stopped: subcommand failed.
