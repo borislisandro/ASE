@@ -40,9 +40,45 @@ static uint8_t sample[3];
 static TimerHandle_t getdistanceTimer;
 
 
+static char upperhalf[] = "<!DOCTYPE html>\
+<html>\
+<head>\
+<style>\
+.button {\
+  display: none; /* Hide the button */\
+}\
+</style>\
+<script>\
+function updateSensorValue() {\
+  var xhttp = new XMLHttpRequest();\
+  xhttp.onreadystatechange = function() {\
+    if (this.readyState == 4 && this.status == 200) {\
+      console.log('Sensor value updated successfully');\
+      location.reload();\
+    }\
+  };\
+  xhttp.open(\'GET\', \'http://192.168.4.1/distance\', true);\
+  xhttp.send();\
+}\
+\
+updateSensorValue();\
+setInterval(updateSensorValue, 10000);\
+</script>\
+</head>\
+<body>\
+<h2>ESP-32 HC-SR04</h2>\
+<h3>Distance measured by the sensor is ";
+
+static char lowerhalf[]= " centimeters</h3>\
+<button class=\"button button1\"></button>\
+</body>\
+</html>";
+
+static char temp[1000];
+
 static char distance_str[10] = "NANN";
 
-void getdistane() {
+void getdistance() {
     RCWL_9610_start_and_read_distance(i2cPort, RCWL_9610_ADDR, timeout, sample);
     float distance = (sample[2] + sample[1]*256 + sample[0]*65536)/1000;
     if( (distance >= 1)&&(distance <= 900)) {
@@ -50,6 +86,91 @@ void getdistane() {
         printf("Distance: %s mm\n",distance_str);
     }
     vTaskDelay(20);
+}
+
+/********************************* WEB SERVER CODE BEGINS ***********************************/
+static const char *TAG = "web server";
+
+/* An HTTP GET handler */
+static esp_err_t distance_get_handler(httpd_req_t *req)
+{
+    esp_err_t error;
+    strcpy(temp, upperhalf);
+    strcat(temp,distance_str);
+    strcat(temp,lowerhalf);
+    const char *responce = (const char *) req->user_ctx;
+    error = httpd_resp_send(req, responce,strlen(responce));
+    if( error != ESP_OK ) {
+        ESP_LOGI(TAG, "Error %d while sending response",error);
+    }
+
+    return error;
+}
+
+static const httpd_uri_t distance = {
+    .uri       = "/distance",
+    .method    = HTTP_GET,
+    .handler   = distance_get_handler,
+    /* Let's pass response string in user
+     * context to demonstrate it's usage */
+    .user_ctx  = temp
+};
+
+esp_err_t http_404_error_handler(httpd_req_t *req, httpd_err_code_t err)
+{
+    /* For any other URI send 404 and close socket */
+    httpd_resp_send_err(req, HTTPD_404_NOT_FOUND, "Some 404 error message");
+    return ESP_FAIL;
+}
+
+static httpd_handle_t start_webserver(void)
+{
+    httpd_handle_t server = NULL;
+    httpd_config_t config = HTTPD_DEFAULT_CONFIG();
+    config.lru_purge_enable = true;
+
+    // Start the httpd server
+    ESP_LOGI(TAG, "Starting server on port: '%d'", config.server_port);
+    if (httpd_start(&server, &config) == ESP_OK) {
+        // Set URI handlers
+        ESP_LOGI(TAG, "Registering URI handlers");
+        httpd_register_uri_handler(server, &distance);
+
+        return server;
+    }
+
+    ESP_LOGI(TAG, "Error starting server!");
+    return NULL;
+}
+
+static esp_err_t stop_webserver(httpd_handle_t server)
+{
+    // Stop the httpd server
+    return httpd_stop(server);
+}
+
+static void disconnect_handler(void* arg, esp_event_base_t event_base,
+                               int32_t event_id, void* event_data)
+{
+    httpd_handle_t* server = (httpd_handle_t*) arg;
+    if (*server) {
+        ESP_LOGI(TAG, "Stopping webserver");
+        if (stop_webserver(*server) == ESP_OK) {
+            *server = NULL;
+        } else {
+            ESP_LOGE(TAG, "Failed to stop http server");
+        }
+    }
+}
+
+static void connect_handler(void* arg, esp_event_base_t event_base,
+                            int32_t event_id, void* event_data)
+{
+    httpd_handle_t* server = (httpd_handle_t*) arg;
+    if (*server == NULL) {
+        ESP_LOGI(TAG, "Starting webserver");
+        *server = start_webserver();
+    }
 }
 
 
